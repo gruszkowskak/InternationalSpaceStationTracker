@@ -4,8 +4,7 @@ public class LatitudeLongitudeToPixel {
     float latitude;
     float longitude;
 
-    public LatitudeLongitudeToPixel() throws IOException, InterruptedException {
-        ISSPositionURL issPositionURL= new ISSPositionURL();
+    public LatitudeLongitudeToPixel(ISSPositionURL issPositionURL) throws IOException, InterruptedException {
         // get actual issPosition, use when you nid get new actual position
         ISSPosition issPosition = issPositionURL.RequestISSPosition();
         this.latitude = issPosition.getLatitude();
@@ -18,7 +17,6 @@ public class LatitudeLongitudeToPixel {
     }
     public double convertlatitude(int mapHeight,int mapWidth) {
         double latRad = latitude*Math.PI/180;
-
         double mercN = Math.log(Math.tan((Math.PI/4)+(latRad/2)));
         double y     = (mapHeight/2)-(mapWidth*mercN/(2*Math.PI));
         return y;
