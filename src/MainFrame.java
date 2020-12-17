@@ -19,6 +19,7 @@ public class MainFrame extends JFrame {
         ISSPosition issPosition = issPositionURL.RequestISSPosition();
         add(new JTextField("Latitude is : "+String.valueOf(issPosition.getLatitude())));
         add(new JTextField("Longitude is : "+String.valueOf(issPosition.getLongitude())));
+        add(new JButton("Drow point"));
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
