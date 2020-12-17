@@ -17,7 +17,7 @@ public class WorldMapPanel extends JPanel {
         try {
             image = ImageIO.read(imageFile);
         } catch (IOException e) {
-            System.err.println("Blad odczytu obrazka");
+            System.err.println("Image reading error");
             e.printStackTrace();
         }
 
