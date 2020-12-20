@@ -13,23 +13,53 @@ public class MainFrame extends JFrame {
 
 
 
-        String fileName = "WholeMap.jpg";
+        JPanel worldMapPanel = new WorldMapPanel("Map.jpg");
+        add(worldMapPanel);
         JMenuBar menuBar = new JMenuBar();
         JMenu mapMenu = new JMenu("Maps");
         JMenuItem menuItem = new JMenuItem("Night");
-        menuItem.addActionListener((event) ->  System.out.println("Night"));
+        menuItem.addActionListener((event) -> System.out.println("Night")); // change file in WorldMapPanel
         mapMenu.add(menuItem);
         JMenuItem menuItem2 = new JMenuItem("WholeMap");
-        menuItem.addActionListener((event) ->  System.out.println("WholeMap"));
+        menuItem2.addActionListener((event) ->  System.out.println("WholeMap")); // change file in WorldMapPanel
         mapMenu.add(menuItem2);
         JMenuItem menuItem3 = new JMenuItem("Map");
-        menuItem.addActionListener((event) ->  System.out.println("Map"));
+        menuItem3.addActionListener((event) ->  System.out.println("Map"));// change file in WorldMapPanel
         mapMenu.add(menuItem3);
         menuBar.add(mapMenu);
+        JMenu astrounautsMenu = new JMenu("Astrounauts");
+        JMenuItem astrounatsItem = new JMenuItem("Go to...");
+        astrounatsItem.addActionListener((event)-> {
+            try {
+                new Astronauts_Frame();
+                setVisible(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            this.setVisible(false);
+        });
+        astrounautsMenu.add(astrounatsItem);
+        menuBar.add(astrounautsMenu);
+        JMenu pass_timeMenu = new JMenu("Pass Time");
+        JMenuItem pass_timeItem = new JMenuItem("Go to...");
+        pass_timeItem.addActionListener((event)-> {
+            try {
+                new PassTime_Frame();
+                setVisible(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            this.setVisible(false);
+        });
+        pass_timeMenu.add(pass_timeItem);
+        menuBar.add(pass_timeMenu);
         setJMenuBar(menuBar);
 
-        JPanel worldMapPanel = new WorldMapPanel();
-        add(worldMapPanel);
+
 
         // Create HttpClient once in program
         //ISSPositionURL issPositionURL= new ISSPositionURL();

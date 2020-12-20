@@ -24,5 +24,6 @@ public class PassTime_Frame extends JFrame {
         add(new JLabel("Next pass date is : "+formattedDate));
         pack();
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

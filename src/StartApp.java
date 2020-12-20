@@ -6,8 +6,8 @@ public class StartApp {
         EventQueue.invokeLater(() -> {
             try {
                 new MainFrame();
-                new PassTime_Frame();
-                new Astronauts_Frame();
+                //new PassTime_Frame();
+                //new Astronauts_Frame();
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }

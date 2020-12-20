@@ -33,5 +33,6 @@ public class Astronauts_Frame extends JFrame {
 
         pack();
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

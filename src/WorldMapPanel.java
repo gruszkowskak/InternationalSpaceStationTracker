@@ -21,7 +21,7 @@ public class WorldMapPanel extends JPanel {
 
     private ISSPosition issPosition;
 
-    public WorldMapPanel() {
+    public WorldMapPanel(String filename) {
         super();
 
         File imageFile = new File(fileName);
