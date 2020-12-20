@@ -3,9 +3,10 @@ import java.io.Serializable;
 /** The Issposition store and shere data from single request from page "http://api.open-notify.org/iss-now.json" */
 public class ISSPosition implements Serializable {
 
-    public static class LongitudeLatitude{
-        private float longitude;
+    public static class LongitudeLatitude implements  Serializable{
         private float latitude;
+        private float longitude;
+
 
         public float getLongitude() {
             return longitude;
@@ -19,8 +20,9 @@ public class ISSPosition implements Serializable {
         @Override
         public String toString() {
             return "LongitudeLatitude{" +
-                    "longitude=" + longitude +
                     ", latitude=" + latitude +
+                    "longitude=" + longitude +
+
                     '}';
         }
     }
