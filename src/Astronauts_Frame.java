@@ -31,6 +31,40 @@ public class Astronauts_Frame extends JFrame {
             add(new JLabel(i+1+"." + name+"\n"));
         }
 
+        //Menu
+        JMenuBar menuBar = new JMenuBar();
+        JMenu isstrackerMenu = new JMenu("ISS Tracker");
+        JMenuItem isstrackerItem = new JMenuItem("Go to...");
+        isstrackerItem.addActionListener((event)-> {
+            try {
+                new MainFrame();
+                setVisible(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            this.setVisible(false);
+        });
+        isstrackerMenu.add(isstrackerItem);
+        menuBar.add(isstrackerMenu);
+        JMenu pass_timeMenu = new JMenu("Pass Time");
+        JMenuItem pass_timeItem = new JMenuItem("Go to...");
+        pass_timeItem.addActionListener((event)-> {
+            try {
+                new PassTime_Frame();
+                setVisible(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            this.setVisible(false);
+        });
+        pass_timeMenu.add(pass_timeItem);
+        menuBar.add(pass_timeMenu);
+        setJMenuBar(menuBar);
+
         pack();
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

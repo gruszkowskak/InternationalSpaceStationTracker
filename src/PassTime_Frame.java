@@ -22,6 +22,40 @@ public class PassTime_Frame extends JFrame {
         sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT+1"));
         String formattedDate = sdf.format(date);
         add(new JLabel("Next pass date is : "+formattedDate));
+
+        //Menu
+        JMenuBar menuBar = new JMenuBar();
+        JMenu isstrackerMenu = new JMenu("ISS Tracker");
+        JMenuItem isstrackerItem = new JMenuItem("Go to...");
+        isstrackerItem.addActionListener((event)-> {
+            try {
+                new MainFrame();
+                setVisible(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            this.setVisible(false);
+        });
+        isstrackerMenu.add(isstrackerItem);
+        menuBar.add(isstrackerMenu);
+        JMenu astrounautsMenu = new JMenu("Astrounauts");
+        JMenuItem astrounatsItem = new JMenuItem("Go to...");
+        astrounatsItem.addActionListener((event)-> {
+            try {
+                new Astronauts_Frame();
+                setVisible(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            this.setVisible(false);
+        });
+        astrounautsMenu.add(astrounatsItem);
+        menuBar.add(astrounautsMenu);
+        setJMenuBar(menuBar);
         pack();
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
