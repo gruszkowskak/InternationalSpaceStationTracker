@@ -25,17 +25,16 @@ public class PeopleInSpaceNowURL {
         // get json from web
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         String json = response.body();
-        System.out.println(json);
+        //System.out.println(json);
 
         // parse json to class ISSposition instance
         Gson gson = new Gson();
-        PeopleInSpaceNow peopleInSpaceNow = gson.fromJson(json,PeopleInSpaceNow.class);
-        return peopleInSpaceNow;
+        return gson.fromJson(json,PeopleInSpaceNow.class);
     }
     // for testing
     public static void main(String[] args) throws IOException, InterruptedException {
         PeopleInSpaceNowURL peopleInSpaceNowURL = new PeopleInSpaceNowURL();
         PeopleInSpaceNow peopleInSpaceNow= peopleInSpaceNowURL.RequestPeopleInSpaceNow();
-        System.out.println(peopleInSpaceNow);
+        //System.out.println(peopleInSpaceNow);
     }
 }
