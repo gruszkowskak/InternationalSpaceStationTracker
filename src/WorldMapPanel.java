@@ -13,7 +13,7 @@ public class WorldMapPanel extends JPanel {
 
     private BufferedImage image;
     private ISSPositionURL issPositionURL= new ISSPositionURL();
-    public String fileName = "Map.jpg";
+    public String fileName = "WholeMap.jpg";
 
     public ISSPosition getIssPosition() {
         return issPosition;
