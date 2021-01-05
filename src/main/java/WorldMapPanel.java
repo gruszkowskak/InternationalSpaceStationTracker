@@ -3,6 +3,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.concurrent.atomic.AtomicReference;
 
 
@@ -24,7 +25,8 @@ public class WorldMapPanel extends JPanel {
     public WorldMapPanel(String filename) {
         super();
 
-        File imageFile = new File(fileName);
+        //File imageFile = new File(fileName);
+        InputStream imageFile = getClass().getResourceAsStream(filename);
         try {
             image = ImageIO.read(imageFile);
         } catch (IOException e) {
