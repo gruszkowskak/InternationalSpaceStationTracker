@@ -11,12 +11,21 @@ import java.util.Date;
 
 public class PassTime_Frame extends JFrame {
 
-    public PassTime_Frame() throws IOException, InterruptedException {
+    public PassTime_Frame() {
         super("Next pass time");
         setLayout(new FlowLayout());
 
         ISSPassTimesURL isspasstimesURL= new ISSPassTimesURL();
-        ISSPassTimes issPassTimes = isspasstimesURL.RequestISSPassTimes(52.216f, 21); //Warsaw
+        ISSPassTimes issPassTimes = null;
+        float latitude =52.216f;  //Warsaw
+        float longitude =21;
+        try {
+            issPassTimes = isspasstimesURL.RequestISSPassTimes(latitude, longitude);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         //take the first pass
         String time= String.valueOf(issPassTimes.getResponse().get(0));
         //convert date to human readable format
@@ -32,14 +41,8 @@ public class PassTime_Frame extends JFrame {
         JMenu isstrackerMenu = new JMenu("ISS Tracker");
         JMenuItem isstrackerItem = new JMenuItem("Go to...");
         isstrackerItem.addActionListener((event)-> {
-            try {
-                new MainFrame();
-                setVisible(true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            new MainFrame();
+            setVisible(true);
             this.setVisible(false);
         });
         isstrackerMenu.add(isstrackerItem);
@@ -47,14 +50,8 @@ public class PassTime_Frame extends JFrame {
         JMenu astrounautsMenu = new JMenu("Astrounauts");
         JMenuItem astrounatsItem = new JMenuItem("Go to...");
         astrounatsItem.addActionListener((event)-> {
-            try {
-                new Astronauts_Frame();
-                setVisible(true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            new Astronauts_Frame();
+            setVisible(true);
             this.setVisible(false);
         });
         astrounautsMenu.add(astrounatsItem);

@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class MainFrame extends JFrame {
 
-    public MainFrame() throws IOException, InterruptedException {
+    public MainFrame()  {
         super("ISS tracker");
         setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
 
@@ -32,14 +32,8 @@ public class MainFrame extends JFrame {
         JMenu astrounautsMenu = new JMenu("Astrounauts");
         JMenuItem astrounatsItem = new JMenuItem("Go to...");
         astrounatsItem.addActionListener((event)-> {
-            try {
-                new Astronauts_Frame();
-                setVisible(true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            new Astronauts_Frame();
+            setVisible(true);
             this.setVisible(false);
         });
         astrounautsMenu.add(astrounatsItem);
@@ -47,14 +41,8 @@ public class MainFrame extends JFrame {
         JMenu pass_timeMenu = new JMenu("Pass Time");
         JMenuItem pass_timeItem = new JMenuItem("Go to...");
         pass_timeItem.addActionListener((event)-> {
-            try {
-                new PassTime_Frame();
-                setVisible(true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            new PassTime_Frame();
+            setVisible(true);
             this.setVisible(false);
         });
         pass_timeMenu.add(pass_timeItem);

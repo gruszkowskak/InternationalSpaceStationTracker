@@ -12,14 +12,21 @@ import java.util.regex.Pattern;
 
 public class Astronauts_Frame extends JFrame {
 
-    public Astronauts_Frame() throws IOException, InterruptedException {
+    public Astronauts_Frame()  {
         super("Astronauts");
         setLayout(new FlowLayout());
 
 
         PeopleInSpaceNowURL peopleInSpaceNowURL= new PeopleInSpaceNowURL();
 
-        PeopleInSpaceNow peopleInSpaceNow = peopleInSpaceNowURL.RequestPeopleInSpaceNow();
+        PeopleInSpaceNow peopleInSpaceNow = null;
+        try {
+            peopleInSpaceNow = peopleInSpaceNowURL.RequestPeopleInSpaceNow();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         ArrayList people = peopleInSpaceNow.getPeople();
 
         Pattern pattern = Pattern.compile("'(.*?)'");
@@ -40,14 +47,8 @@ public class Astronauts_Frame extends JFrame {
         JMenu isstrackerMenu = new JMenu("ISS Tracker");
         JMenuItem isstrackerItem = new JMenuItem("Go to...");
         isstrackerItem.addActionListener((event)-> {
-            try {
-                new MainFrame();
-                setVisible(true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            new MainFrame();
+            setVisible(true);
             this.setVisible(false);
         });
         isstrackerMenu.add(isstrackerItem);
@@ -55,14 +56,8 @@ public class Astronauts_Frame extends JFrame {
         JMenu pass_timeMenu = new JMenu("Pass Time");
         JMenuItem pass_timeItem = new JMenuItem("Go to...");
         pass_timeItem.addActionListener((event)-> {
-            try {
-                new PassTime_Frame();
-                setVisible(true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            new PassTime_Frame();
+            setVisible(true);
             this.setVisible(false);
         });
         pass_timeMenu.add(pass_timeItem);
