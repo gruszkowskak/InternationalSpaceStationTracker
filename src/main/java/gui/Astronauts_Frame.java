@@ -1,3 +1,7 @@
+package gui;
+
+import url.PeopleInSpaceNow;
+import url.PeopleInSpaceNowURL;
 
 import javax.swing.*;
 import java.awt.*;

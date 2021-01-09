@@ -1,3 +1,5 @@
+import gui.MainFrame;
+
 import java.awt.EventQueue;
 import java.io.IOException;
 

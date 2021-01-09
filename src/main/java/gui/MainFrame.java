@@ -1,9 +1,11 @@
+package gui;
+
+import url.ISSPosition;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class MainFrame extends JFrame {
 

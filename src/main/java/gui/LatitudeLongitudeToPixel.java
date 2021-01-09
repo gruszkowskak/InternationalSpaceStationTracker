@@ -1,3 +1,7 @@
+package gui;
+
+import url.ISSPosition;
+
 import java.io.IOException;
 
 public class LatitudeLongitudeToPixel {

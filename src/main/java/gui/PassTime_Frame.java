@@ -1,3 +1,7 @@
+package gui;
+
+import url.ISSPassTimes;
+import url.ISSPassTimesURL;
 
 import javax.swing.*;
 import java.awt.*;
