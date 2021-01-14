@@ -1,14 +1,15 @@
 package gui;
 
-
 import url.ISSPosition;
 import url.ISSPositionURL;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 import javax.imageio.ImageIO;
@@ -28,12 +29,10 @@ public class WorldMapPanel extends JPanel {
     private ISSPosition issPosition;
 
     public WorldMapPanel(String filename) {
+        super();
 
-
-
-//        File imageFile = new File(fileName);
-        InputStream imageFile =getClass().getResourceAsStream("/"+ filename);
-
+        //File imageFile = new File(fileName);
+        InputStream imageFile = getClass().getResourceAsStream("/" + filename);
         try {
             image = ImageIO.read(imageFile);
         } catch (IOException e) {

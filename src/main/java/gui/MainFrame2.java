@@ -1,4 +1,4 @@
-
+package gui;
 /*
 import javax.swing.*;
 import java.awt.*;
@@ -56,6 +56,8 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import gui.Astronauts_Frame;
+import gui.PassTime_Frame;
 import org.geotools.coverage.GridSampleDimension;
 import org.geotools.coverage.grid.GridCoverage2D;
 import org.geotools.coverage.grid.io.AbstractGridFormat;
@@ -102,6 +104,8 @@ import org.geotools.swing.styling.JSimpleStyleDialog;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
+import url.ISSPosition;
+import url.ISSPositionURL;
 
 public class MainFrame2 extends JMapFrame {
     static StyleFactory styleFactory = CommonFactoryFinder.getStyleFactory();
@@ -164,14 +168,8 @@ public class MainFrame2 extends JMapFrame {
         JMenu astrounautsMenu = new JMenu("Astrounauts");
         JMenuItem astrounatsItem = new JMenuItem("Go to...");
         astrounatsItem.addActionListener((event)-> {
-            try {
-                new Astronauts_Frame();
-                setVisible(true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            new Astronauts_Frame();
+            setVisible(true);
             this.setVisible(false);
         });
         astrounautsMenu.add(astrounatsItem);
@@ -179,14 +177,8 @@ public class MainFrame2 extends JMapFrame {
         JMenu pass_timeMenu = new JMenu("Pass Time");
         JMenuItem pass_timeItem = new JMenuItem("Go to...");
         pass_timeItem.addActionListener((event)-> {
-            try {
-                new PassTime_Frame();
-                setVisible(true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            new PassTime_Frame();
+            setVisible(true);
             this.setVisible(false);
         });
         pass_timeMenu.add(pass_timeItem);

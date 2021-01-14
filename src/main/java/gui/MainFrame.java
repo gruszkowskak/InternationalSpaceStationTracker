@@ -1,13 +1,8 @@
-package gui;
-
-import url.ISSPosition;
-
-/*
+package gui;/*
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 import java.awt.*;
@@ -106,19 +101,17 @@ import org.geotools.swing.styling.JSimpleStyleDialog;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
-
+import url.ISSPosition;
 
 public class MainFrame extends JFrame {
     /*static StyleFactory styleFactory = CommonFactoryFinder.getStyleFactory();
     private StyleFactory sf = CommonFactoryFinder.getStyleFactory();
     private FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2();*/
 
-
     /*private JMapFrame frame;
     private GridCoverage2DReader reader;*/
 
     public MainFrame() throws Exception {
-
         super("ISS tracker");
         setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
 

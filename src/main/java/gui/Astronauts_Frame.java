@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 public class Astronauts_Frame extends JFrame {
 
-    public Astronauts_Frame(){
+    public Astronauts_Frame() {
         super("Astronauts");
         setLayout(new FlowLayout());
 

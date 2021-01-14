@@ -11,7 +11,7 @@ import java.util.Date;
 
 public class PassTime_Frame extends JFrame {
 
-    public PassTime_Frame(){
+    public PassTime_Frame() {
         super("Next pass time");
         setLayout(new FlowLayout());
 
