@@ -1,13 +1,9 @@
-package gui;
-
-import url.ISSPosition;
 
 /*
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 import java.awt.*;
@@ -107,98 +103,64 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 
+public class MainFrame2 extends JMapFrame {
+    static StyleFactory styleFactory = CommonFactoryFinder.getStyleFactory();
+    //private StyleFactory sf = CommonFactoryFinder.getStyleFactory();
+    //private FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2();
 
-public class MainFrame extends JFrame {
-    /*static StyleFactory styleFactory = CommonFactoryFinder.getStyleFactory();
-    private StyleFactory sf = CommonFactoryFinder.getStyleFactory();
-    private FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2();*/
+    private JMapFrame frame;
+    private GridCoverage2DReader reader;
 
+    public MainFrame2() throws Exception {
 
-    /*private JMapFrame frame;
-    private GridCoverage2DReader reader;*/
-
-    public MainFrame() throws Exception {
-
-        super("ISS tracker");
-        setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
-
-
-
-        JPanel worldMapPanel = new WorldMapPanel("Map.jpg");
-        add(worldMapPanel);
-        JMenuBar menuBar = new JMenuBar();
-        JMenu mapMenu = new JMenu("Maps");
-        JMenuItem menuItem = new JMenuItem("Night");
-        menuItem.addActionListener((event) -> System.out.println("Night")); // change file in WorldMapPanel
-        mapMenu.add(menuItem);
-        JMenuItem menuItem2 = new JMenuItem("WholeMap");
-        menuItem2.addActionListener((event) ->  System.out.println("WholeMap")); // change file in WorldMapPanel
-        mapMenu.add(menuItem2);
-        JMenuItem menuItem3 = new JMenuItem("Map");
-        menuItem3.addActionListener((event) ->  System.out.println("Map"));// change file in WorldMapPanel
-        mapMenu.add(menuItem3);
-        menuBar.add(mapMenu);
-        JMenu astrounautsMenu = new JMenu("Astrounauts");
-        JMenuItem astrounatsItem = new JMenuItem("Go to...");
-        astrounatsItem.addActionListener((event)-> {
-            new Astronauts_Frame();
-            setVisible(true);
-            this.setVisible(false);
-        });
-        astrounautsMenu.add(astrounatsItem);
-        menuBar.add(astrounautsMenu);
-        JMenu pass_timeMenu = new JMenu("Pass Time");
-        JMenuItem pass_timeItem = new JMenuItem("Go to...");
-        pass_timeItem.addActionListener((event)-> {
-            new PassTime_Frame();
-            setVisible(true);
-            this.setVisible(false);
-        });
-        pass_timeMenu.add(pass_timeItem);
-        menuBar.add(pass_timeMenu);
-        JMenu restart = new JMenu("Restart");
-        restart.addActionListener((event)-> {
-            repaint();
-            JPanel worldMapPanel2 = new WorldMapPanel("Map.jpg");
-            add(worldMapPanel2);
-        });
-        menuBar.add(restart);
-        setJMenuBar(menuBar);
-        JTextField latitudeTextField = new JTextField("Latitude : ");
-        latitudeTextField.setPreferredSize(new Dimension(100,24));
-        add(latitudeTextField);
-        JTextField longitudeTextField = new JTextField("Longitude : ");
-        longitudeTextField.setPreferredSize(new Dimension(100, 24));
-        add(longitudeTextField);
+        File file = new File("shapefile.shp");
+        if (file == null) {
+            return;
+        }
 
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        InputStream imageFile = getClass().getResourceAsStream("logo.png");
+        FileDataStore store = FileDataStoreFinder.getDataStore(file);
+        SimpleFeatureSource featureSource = store.getFeatureSource();
 
+        // Create a map content and add our shapefile to it
+        MapContent map = new MapContent();
+        map.setTitle("ISStracker");
+        ISSPositionURL issPositionURL= new ISSPositionURL();
 
+        Style style = createStyle(file, featureSource);
+
+        Layer layer = new FeatureLayer(featureSource, style);
+        map.addLayer(layer);
+        ISSPosition issPosition = issPositionURL.RequestISSPosition();
+        Layer pLayer = addPoint(issPosition.getLongitude(),issPosition.getLatitude());
+        map.addLayer(pLayer);
+        List<ISSPosition> times = new ArrayList();
         Timer timer = new Timer(5000, new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                ((WorldMapPanel) worldMapPanel).drawPointR();
-                ((WorldMapPanel) worldMapPanel).drawlogo();
-                ISSPosition issPosition = ((WorldMapPanel) worldMapPanel).getIssPosition();
-                latitudeTextField.setText("Latitude : "+ issPosition.getLatitude());
-                longitudeTextField.setText("Longitude : "+issPosition.getLongitude());
-
-
+                ISSPosition issPosition = null;
+                try {
+                    issPosition = issPositionURL.RequestISSPosition();
+                    times.add(issPosition);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }Layer pLayer2;
+                for(int i=0;i<times.size();i++){
+                    pLayer2 = addPoint(times.get(i).getLongitude(),times.get(i).getLatitude());
+                    map.addLayer(pLayer2);
+                    }
+                pLayer2 = addPoint2(issPosition.getLongitude(),issPosition.getLatitude());
+                map.addLayer(pLayer2);
+                frame.repaint();
 
             }
         });
 
         timer.start();
-        pack();
-        System.out.println(getSize().toString());
-        setVisible(true);
-
-    }
-
-
-       /* JMenuBar menuBar = new JMenuBar();
+        frame = new JMapFrame(map);
+        JMenuBar menuBar = new JMenuBar();
         JMenu astrounautsMenu = new JMenu("Astrounauts");
         JMenuItem astrounatsItem = new JMenuItem("Go to...");
         astrounatsItem.addActionListener((event)-> {
@@ -229,52 +191,16 @@ public class MainFrame extends JFrame {
         });
         pass_timeMenu.add(pass_timeItem);
         menuBar.add(pass_timeMenu);
-        setJMenuBar(menuBar);
-        File file = JFileDataStoreChooser.showOpenFile("shp", null);
-        if (file == null) {
-            return;
-        }
-
-
-        FileDataStore store = FileDataStoreFinder.getDataStore(file);
-        SimpleFeatureSource featureSource = store.getFeatureSource();
-
-        // Create a map content and add our shapefile to it
-        MapContent map = new MapContent();
-        map.setTitle("Quickstart");
-        ISSPositionURL issPositionURL= new ISSPositionURL();
-
-        //Style style = createStyle(file, featureSource);
-
-        //Layer layer = new FeatureLayer(featureSource, style);
-        //map.addLayer(layer);
-        // współrzędne Alaski
-        ISSPosition issPosition = issPositionURL.RequestISSPosition();
-        Layer pLayer = addPoint(issPosition.getLatitude(),issPosition.getLongitude());
-        map.addLayer(pLayer);
-        Timer timer = new Timer(5000, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                ISSPosition issPosition = null;
-                try {
-                    issPosition = issPositionURL.RequestISSPosition();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println(issPosition.getLatitude()+", "+issPosition.getLongitude());
-                Layer pLayer2 = addPoint(issPosition.getLongitude(),issPosition.getLatitude());
-                map.addLayer(pLayer2);
-
-            }
-        });
-
-        timer.start();
+        frame.enableStatusBar(true);
+        // frame.enableTool(JMapFrame.Tool.ZOOM, JMapFrame.Tool.PAN, JMapFrame.Tool.RESET);
+        frame.enableToolBar(true);
+        frame.setJMenuBar(menuBar);
+        frame.setSize(800,600);
+        frame.repaint();
 
         // Now display the map
         pack();
-        setVisible(true);}
+        frame.setVisible(true);}
     static Layer addPoint(double latitude, double longitude) {
         SimpleFeatureTypeBuilder b = new SimpleFeatureTypeBuilder();
 
@@ -296,7 +222,28 @@ public class MainFrame extends JFrame {
         Layer layer = new FeatureLayer(featureCollection, style);
         return layer;
     }
-    *//*private Style createStyle(File file, FeatureSource featureSource) {
+    static Layer addPoint2(double latitude, double longitude) {
+        SimpleFeatureTypeBuilder b = new SimpleFeatureTypeBuilder();
+
+        b.setName("MyFeatureType");
+        b.setCRS(DefaultGeographicCRS.WGS84);
+        b.add("location", Point.class);
+        // building the type
+        final SimpleFeatureType TYPE = b.buildFeatureType();
+
+        SimpleFeatureBuilder featureBuilder = new SimpleFeatureBuilder(TYPE);
+        GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
+        Point point = geometryFactory.createPoint(new Coordinate(latitude, longitude));
+        featureBuilder.add(point);
+        SimpleFeature feature = featureBuilder.buildFeature(null);
+        DefaultFeatureCollection featureCollection = new DefaultFeatureCollection("internal", TYPE);
+        featureCollection.add(feature);
+        Style style = SLD.createSimpleStyle(TYPE, Color.blue);
+
+        Layer layer = new FeatureLayer(featureCollection, style);
+        return layer;
+    }
+    private Style createStyle(File file, FeatureSource featureSource) {
         File sld = toSLDFile(file);
         if (sld != null) {
             return createFromSLD(sld);
@@ -305,7 +252,7 @@ public class MainFrame extends JFrame {
         SimpleFeatureType schema = (SimpleFeatureType) featureSource.getSchema();
         return JSimpleStyleDialog.showDialog(null, schema);
     }
-    *//**//** Figure out if a valid SLD file is available. *//**//*
+
     public File toSLDFile(File file) {
         String path = file.getAbsolutePath();
         String base = path.substring(0, path.length() - 4);
@@ -322,7 +269,7 @@ public class MainFrame extends JFrame {
         return null;
     }
 
-    *//**//** Create a Style object from a definition in a SLD document *//**//*
+
     private Style createFromSLD(File sld) {
         try {
             SLDParser stylereader = new SLDParser(styleFactory, sld.toURI().toURL());
@@ -334,6 +281,7 @@ public class MainFrame extends JFrame {
         }
         return null;
     }
+    /*
     *//**//**
      * Prompts the user for a GeoTIFF file and a Shapefile and passes them to the displayLayers
      * method
@@ -553,4 +501,5 @@ public class MainFrame extends JFrame {
         return SLD.wrapSymbolizers(sym);
     }*/
 }
+
 

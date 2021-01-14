@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 public class Astronauts_Frame extends JFrame {
 
-    public Astronauts_Frame()  {
+    public Astronauts_Frame(){
         super("Astronauts");
         setLayout(new FlowLayout());
 
@@ -47,8 +47,14 @@ public class Astronauts_Frame extends JFrame {
         JMenu isstrackerMenu = new JMenu("ISS Tracker");
         JMenuItem isstrackerItem = new JMenuItem("Go to...");
         isstrackerItem.addActionListener((event)-> {
-            new MainFrame();
-            setVisible(true);
+            try {
+                new MainFrame();
+                setVisible(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             this.setVisible(false);
         });
         isstrackerMenu.add(isstrackerItem);
@@ -63,8 +69,7 @@ public class Astronauts_Frame extends JFrame {
         pass_timeMenu.add(pass_timeItem);
         menuBar.add(pass_timeMenu);
         setJMenuBar(menuBar);
-
-        pack();
+        setSize(1414,660);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

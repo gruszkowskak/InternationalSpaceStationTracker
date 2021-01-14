@@ -7,7 +7,11 @@ public class StartApp {
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
 
-            new MainFrame();
+            try {
+                new MainFrame2();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         });
     }
