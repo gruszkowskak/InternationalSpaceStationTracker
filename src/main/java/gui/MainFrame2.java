@@ -58,6 +58,7 @@ import javax.swing.*;
 
 import gui.Astronauts_Frame;
 import gui.PassTime_Frame;
+
 import org.geotools.coverage.GridSampleDimension;
 import org.geotools.coverage.grid.GridCoverage2D;
 import org.geotools.coverage.grid.io.AbstractGridFormat;
@@ -104,6 +105,7 @@ import org.geotools.swing.styling.JSimpleStyleDialog;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
+
 import url.ISSPosition;
 import url.ISSPositionURL;
 

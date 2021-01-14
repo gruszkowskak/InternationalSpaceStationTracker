@@ -10,6 +10,7 @@ public class StartApp {
         EventQueue.invokeLater(() -> {
             try {
                 new MainFrame();
+//                new MainFrame2();
                 //new PassTime_Frame();
                 //new Astronauts_Frame();
             } catch (IOException | InterruptedException e) {

@@ -76,7 +76,7 @@ public class WorldMapPanel extends JPanel {
         }
     }
     public void drawlogo (){
-        InputStream imageFile = getClass().getResourceAsStream("logo3.png");
+        InputStream imageFile = getClass().getResourceAsStream("/logo2.png");
         try {
             logo = ImageIO.read(imageFile);
         } catch (IOException e) {

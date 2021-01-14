@@ -43,6 +43,10 @@ import org.opengis.feature.simple.SimpleFeatureType;
 import org.geotools.xml.styling.SLDParser;
 import org.opengis.style.ContrastMethod;
 */
+import org.geotools.factory.CommonFactoryFinder;
+import org.geotools.styling.StyleFactory;
+import url.ISSPosition;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -54,7 +58,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
+/*
 import org.geotools.coverage.GridSampleDimension;
 import org.geotools.coverage.grid.GridCoverage2D;
 import org.geotools.coverage.grid.io.AbstractGridFormat;
@@ -102,7 +106,7 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 import url.ISSPosition;
-
+*/
 public class MainFrame extends JFrame {
     /*static StyleFactory styleFactory = CommonFactoryFinder.getStyleFactory();
     private StyleFactory sf = CommonFactoryFinder.getStyleFactory();
@@ -166,7 +170,7 @@ public class MainFrame extends JFrame {
 
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        InputStream imageFile = getClass().getResourceAsStream("logo.png");
+        InputStream imageFile = getClass().getResourceAsStream("/logo.png");
 
 
         Timer timer = new Timer(5000, new AbstractAction() {
