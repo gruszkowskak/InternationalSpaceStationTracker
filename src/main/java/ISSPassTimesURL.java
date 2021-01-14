@@ -1,5 +1,7 @@
+
+
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+
 
 import java.io.IOException;
 import java.net.URI;
@@ -10,7 +12,7 @@ import java.net.http.HttpResponse;
 public class ISSPassTimesURL {
     private static final String URL="http://api.open-notify.org/iss-pass.json";
 
-    public ISSPassTimes RequestISSPassTimes(float latitude,float longitude) throws IOException, InterruptedException {
+    public ISSPassTimes RequestISSPassTimes(float latitude, float longitude) throws IOException, InterruptedException {
         String urlQuery=URL + "?" + "lat=" + latitude +"&" + "lon=" + longitude;
 
         HttpClient client = HttpClient.newHttpClient();

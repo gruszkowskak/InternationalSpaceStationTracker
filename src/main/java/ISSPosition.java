@@ -1,3 +1,5 @@
+
+
 import java.io.Serializable;
 
 /** The Issposition store and shere data from single request from page "http://api.open-notify.org/iss-now.json" */
