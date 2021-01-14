@@ -1,4 +1,4 @@
-
+package url;
 
 import com.google.gson.Gson;
 
@@ -7,6 +7,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 
 public class PeopleInSpaceNowURL {
 
@@ -16,7 +17,9 @@ public class PeopleInSpaceNowURL {
 
 
     public PeopleInSpaceNowURL() {
-        client = HttpClient.newHttpClient();
+        client = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(10))
+                .build();
         request = HttpRequest.newBuilder()
                 .GET()
                 .uri(URI.create(URL))

@@ -1,8 +1,11 @@
+package url;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 
 import com.google.gson.Gson;
 
@@ -13,7 +16,9 @@ public class ISSPositionURL {
 
 
     public ISSPositionURL() {
-        client = HttpClient.newHttpClient();
+        client  = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(10))
+                .build();
         request = HttpRequest.newBuilder()
                 .GET()
                 .uri(URI.create(URL))
@@ -21,6 +26,7 @@ public class ISSPositionURL {
     }
 
     public ISSPosition RequestISSPosition() throws IOException, InterruptedException {
+
         // get json from web
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         String json = response.body();
@@ -28,6 +34,7 @@ public class ISSPositionURL {
         // parse json to class ISSposition instance
         Gson gson = new Gson();
         ISSPosition issposition= gson.fromJson(json,ISSPosition.class);
+
         return issposition;
     }
 }
