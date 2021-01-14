@@ -48,6 +48,13 @@ public class AstronautImagesURL {
         AstronautImages astronautImages= AstronautImagesURL.search("Sergey Ryzhikov");
         String jpg = astronautImages.getContentUrl();
         System.out.println(jpg);
+
+        System.out.println(AstronautImagesURL.search("Kate Rubins").getContentUrl());
+        System.out.println(AstronautImagesURL.search("Sergey Kud-Sverchkov").getContentUrl());
+        System.out.println(AstronautImagesURL.search("Mike Hopkins").getContentUrl());
+        System.out.println(AstronautImagesURL.search("Victor Glover").getContentUrl());
+        System.out.println(AstronautImagesURL.search("Shannon Walker").getContentUrl());
+        System.out.println(AstronautImagesURL.search("Soichi Noguchi").getContentUrl());
     }
 }
 
