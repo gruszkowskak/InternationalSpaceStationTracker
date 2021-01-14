@@ -35,6 +35,8 @@ public class PassTime_Frame extends JFrame {
                 e.printStackTrace();
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             this.setVisible(false);
         });
@@ -56,7 +58,7 @@ public class PassTime_Frame extends JFrame {
         astrounautsMenu.add(astrounatsItem);
         menuBar.add(astrounautsMenu);
         setJMenuBar(menuBar);
-        pack();
+        setSize(1414,660);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

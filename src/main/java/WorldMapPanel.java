@@ -15,6 +15,7 @@ public class WorldMapPanel extends JPanel {
     private BufferedImage image;
     private ISSPositionURL issPositionURL= new ISSPositionURL();
     public String fileName = "WholeMap.jpg";
+    private BufferedImage logo;
 
     public ISSPosition getIssPosition() {
         return issPosition;
@@ -45,7 +46,8 @@ public class WorldMapPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(image, 0, 0, this);
-        drawPointB(g);
+
+
 
 
     }
@@ -67,6 +69,30 @@ public class WorldMapPanel extends JPanel {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+    public void drawlogo (){
+        InputStream imageFile = getClass().getResourceAsStream("logo3.png");
+        try {
+            logo = ImageIO.read(imageFile);
+        } catch (IOException e) {
+            System.err.println("Image reading error");
+            e.printStackTrace();
+        }
+        Graphics gr = getGraphics();
+        Graphics g = getComponentGraphics(gr);
+        Graphics2D g2d = (Graphics2D) g;
+        try {
+            this.issPosition = issPositionURL.RequestISSPosition();
+            LatitudeLongitudeToPixel toPixel = new LatitudeLongitudeToPixel(issPosition);
+            double height = toPixel.convertlatitude(image.getHeight(),image.getWidth());
+            double width = toPixel.convertlongitude(image.getWidth());
+            gr.drawImage(logo,(int)width-15,(int)height-10,null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
     public void drawPointB (Graphics g){
         Graphics2D g2d = (Graphics2D) g;

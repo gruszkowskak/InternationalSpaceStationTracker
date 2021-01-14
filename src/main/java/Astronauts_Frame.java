@@ -41,7 +41,7 @@ public class Astronauts_Frame extends JFrame {
                 setVisible(true);
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             this.setVisible(false);
@@ -64,8 +64,7 @@ public class Astronauts_Frame extends JFrame {
         pass_timeMenu.add(pass_timeItem);
         menuBar.add(pass_timeMenu);
         setJMenuBar(menuBar);
-
-        pack();
+        setSize(1414,660);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
