@@ -116,6 +116,7 @@ public class WorldMapPanel extends JPanel {
             e.printStackTrace();
         }
     }
+
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }

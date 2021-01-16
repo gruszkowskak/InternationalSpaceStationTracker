@@ -177,7 +177,7 @@ public class MainFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 ((WorldMapPanel) worldMapPanel).drawPointR();
-                ((WorldMapPanel) worldMapPanel).drawlogo();
+//                ((WorldMapPanel) worldMapPanel).drawlogo();
                 ISSPosition issPosition = ((WorldMapPanel) worldMapPanel).getIssPosition();
                 latitudeTextField.setText("Latitude : "+ issPosition.getLatitude());
                 longitudeTextField.setText("Longitude : "+issPosition.getLongitude());
