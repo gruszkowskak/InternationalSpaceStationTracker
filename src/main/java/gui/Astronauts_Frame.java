@@ -48,7 +48,7 @@ public class Astronauts_Frame extends JFrame {
         JMenuItem isstrackerItem = new JMenuItem("Go to...");
         isstrackerItem.addActionListener((event)-> {
             try {
-                new MainFrame();
+                new MainFrame("Map.jpg");
                 setVisible(true);
             } catch (IOException e) {
                 e.printStackTrace();
