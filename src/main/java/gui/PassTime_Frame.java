@@ -27,6 +27,7 @@ public class PassTime_Frame extends JFrame {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        //if not null, bo inaczej się
         //take the first pass
         String time= String.valueOf(issPassTimes.getResponse().get(0));
         //convert date to human readable format

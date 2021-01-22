@@ -1,11 +1,16 @@
 package gui;
 
+import url.AstronautImagesURL;
 import url.PeopleInSpaceNow;
 import url.PeopleInSpaceNowURL;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,6 +44,25 @@ public class Astronauts_Frame extends JFrame {
             {
                 name = matcher.group(1);
             }
+            String u = AstronautImagesURL.search(name).getContentUrl();
+
+            BufferedImage image =null;
+            try{
+
+                URL url =new URL(AstronautImagesURL.search(name).getContentUrl());
+                        // read the url
+                        image = ImageIO.read(url);
+
+                //for png
+                //ImageIO.write(image, "png",new File("/tmp/have_a_question.png"));
+
+                // for jpg
+                ImageIO.write(image, "jpg",new File("src/main/resources/Astronaut.jpg"));
+
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+
             add(new JLabel(i+1+"." + name+"\n"));
         }
 
