@@ -17,11 +17,9 @@ public class PassTime_Frame extends JFrame {
         setLayout(new FlowLayout());
 
         ISSPassTimesURL isspasstimesURL= new ISSPassTimesURL();
-        ISSPassTimes issPassTimes = null;
-        float latitude =52.216f;  //Warsaw
-        float longitude =21;
+        ISSPassTimes issPassTimes = null; //Warsaw
         try {
-            issPassTimes = isspasstimesURL.RequestISSPassTimes(latitude, longitude);
+            issPassTimes = isspasstimesURL.RequestISSPassTimes(52.216f, 21);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -43,8 +41,16 @@ public class PassTime_Frame extends JFrame {
         JMenu isstrackerMenu = new JMenu("ISS Tracker");
         JMenuItem isstrackerItem = new JMenuItem("Go to...");
         isstrackerItem.addActionListener((event)-> {
-            new MainFrame();
-            setVisible(true);
+            try {
+                new MainFrame("Map.jpg");
+                setVisible(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             this.setVisible(false);
         });
         isstrackerMenu.add(isstrackerItem);
@@ -59,7 +65,7 @@ public class PassTime_Frame extends JFrame {
         astrounautsMenu.add(astrounatsItem);
         menuBar.add(astrounautsMenu);
         setJMenuBar(menuBar);
-        pack();
+        setSize(1414,660);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
