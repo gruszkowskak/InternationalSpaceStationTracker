@@ -1,5 +1,6 @@
 package gui;
 
+import url.AstronautImagesURL;
 import url.PeopleInSpaceNow;
 import url.PeopleInSpaceNowURL;
 
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static gui.ImageSave.saveImage;
+
 public class Astronauts_Frame extends JFrame {
 
     public Astronauts_Frame() {
@@ -18,8 +21,11 @@ public class Astronauts_Frame extends JFrame {
         setLayout(new FlowLayout());
         Image icon = new javax.swing.ImageIcon("src/main/resources/nasa_logo.png").getImage();
         setIconImage(icon);
+        getContentPane().setBackground(new java.awt.Color(204, 230, 255));
         JPanel p = new JPanel();
         p.setLayout(new GridLayout(3,3));
+        p.setBackground(new java.awt.Color(204, 230, 255));
+
 
         PeopleInSpaceNowURL peopleInSpaceNowURL= new PeopleInSpaceNowURL();
 
@@ -44,23 +50,30 @@ public class Astronauts_Frame extends JFrame {
             {
                 name = matcher.group(1);
             }
-            //String u = AstronautImagesURL.search(name).getContentUrl();
             JLabel label = new JLabel(name, SwingConstants.CENTER);
             p.add(label);
             File tmpDir = new File("src/main/resources/"+name+".jpg");
             boolean exists = tmpDir.exists();
             if(exists){
                 ImageIcon imageIcon = new ImageIcon("src/main/resources/"+name+".jpg");
-                Image image = imageIcon.getImage(); // transform it
-                Image newimg = image.getScaledInstance(200, 190,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-                imageIcon = new ImageIcon(newimg);  // transform it back
+                Image image = imageIcon.getImage();
+                Image newimg = image.getScaledInstance(200, 190,  java.awt.Image.SCALE_SMOOTH); // scale image
+                imageIcon = new ImageIcon(newimg);
                 p.add(new JLabel(imageIcon));
             }
-            else{ //tu nowe pobierać
-                ImageIcon imageIcon = new ImageIcon("src/main/resources/iss_logo_no_astronaut.jpg");
-                Image image = imageIcon.getImage(); // transform it
-                Image newimg = image.getScaledInstance(200, 190,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-                imageIcon = new ImageIcon(newimg);  // transform it back
+            else{ //here new image is downloaded
+                String imageUrl = AstronautImagesURL.search(name).getContentUrl();
+                String destinationFile = "src/main/resources/"+name+".jpg";
+
+                try {
+                    saveImage(imageUrl, destinationFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                ImageIcon imageIcon = new ImageIcon(destinationFile);
+                Image image = imageIcon.getImage();
+                Image newimg = image.getScaledInstance(200, 190,  java.awt.Image.SCALE_SMOOTH); // scale image
+                imageIcon = new ImageIcon(newimg);
                 p.add(new JLabel(imageIcon));
             }
         }

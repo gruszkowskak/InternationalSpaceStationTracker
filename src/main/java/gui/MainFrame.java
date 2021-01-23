@@ -118,7 +118,7 @@ public class MainFrame extends JFrame {
     public MainFrame(String filename) throws Exception {
         super("ISS tracker");
         setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
-
+        getContentPane().setBackground(new java.awt.Color(204, 230, 255));
         Image icon = new javax.swing.ImageIcon("src/main/resources/nasa_logo.png").getImage();
         setIconImage(icon);
 
