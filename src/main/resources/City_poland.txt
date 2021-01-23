@@ -341,7 +341,7 @@ Dobiegniew              15°45'E        52°58'N
 Dobra (konińskie)       18°37'E        51°55'N
 Dobra (nowosądeckie)    20°15'E        49°43'N
 Dobra (szczecińskie)    14°23'E        53°29'N
-Dobra (szczecińskie)    15°18'E        53°34'N
+Dobra (szczecińskie)    15°18'hE        53°34'N
 Dobrcz                  18°09'E        53°16'N
 Dobre (siedleckie)      21°41'E        52°19'N
 Dobre (włocławskie)     18°33'E        52°41'N

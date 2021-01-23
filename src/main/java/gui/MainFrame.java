@@ -119,7 +119,8 @@ public class MainFrame extends JFrame {
         super("ISS tracker");
         setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
 
-
+        Image icon = new javax.swing.ImageIcon("src/main/resources/nasa_logo.png").getImage();
+        setIconImage(icon);
 
         JPanel worldMapPanel = new WorldMapPanel(filename);
         add(worldMapPanel);

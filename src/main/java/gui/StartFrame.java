@@ -9,7 +9,6 @@ public class StartFrame extends JFrame {
         super("ISS tracker");
         setLayout(new BorderLayout());
 
-
         JPanel startPanel = new StartPanel(this);
         add(startPanel);
 

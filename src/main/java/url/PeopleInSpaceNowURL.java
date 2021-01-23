@@ -40,6 +40,6 @@ public class PeopleInSpaceNowURL {
     public static void main(String[] args) throws IOException, InterruptedException {
         PeopleInSpaceNowURL peopleInSpaceNowURL = new PeopleInSpaceNowURL();
         PeopleInSpaceNow peopleInSpaceNow= peopleInSpaceNowURL.RequestPeopleInSpaceNow();
-        //System.out.println(peopleInSpaceNow);
+        System.out.println(peopleInSpaceNow);
     }
 }

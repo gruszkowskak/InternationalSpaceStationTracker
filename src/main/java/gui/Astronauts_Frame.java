@@ -1,16 +1,12 @@
 package gui;
 
-import url.AstronautImagesURL;
 import url.PeopleInSpaceNow;
 import url.PeopleInSpaceNowURL;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,7 +16,10 @@ public class Astronauts_Frame extends JFrame {
     public Astronauts_Frame() {
         super("Astronauts");
         setLayout(new FlowLayout());
-
+        Image icon = new javax.swing.ImageIcon("src/main/resources/nasa_logo.png").getImage();
+        setIconImage(icon);
+        JPanel p = new JPanel();
+        p.setLayout(new GridLayout(3,3));
 
         PeopleInSpaceNowURL peopleInSpaceNowURL= new PeopleInSpaceNowURL();
 
@@ -32,6 +31,7 @@ public class Astronauts_Frame extends JFrame {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         ArrayList people = peopleInSpaceNow.getPeople();
 
         Pattern pattern = Pattern.compile("'(.*?)'");
@@ -44,27 +44,28 @@ public class Astronauts_Frame extends JFrame {
             {
                 name = matcher.group(1);
             }
-            String u = AstronautImagesURL.search(name).getContentUrl();
-
-            BufferedImage image =null;
-            try{
-
-                URL url =new URL(AstronautImagesURL.search(name).getContentUrl());
-                        // read the url
-                        image = ImageIO.read(url);
-
-                //for png
-                //ImageIO.write(image, "png",new File("/tmp/have_a_question.png"));
-
-                // for jpg
-                ImageIO.write(image, "jpg",new File("src/main/resources/Astronaut.jpg"));
-
-            }catch(IOException e){
-                e.printStackTrace();
+            //String u = AstronautImagesURL.search(name).getContentUrl();
+            JLabel label = new JLabel(name, SwingConstants.CENTER);
+            p.add(label);
+            File tmpDir = new File("src/main/resources/"+name+".jpg");
+            boolean exists = tmpDir.exists();
+            if(exists){
+                ImageIcon imageIcon = new ImageIcon("src/main/resources/"+name+".jpg");
+                Image image = imageIcon.getImage(); // transform it
+                Image newimg = image.getScaledInstance(200, 190,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+                imageIcon = new ImageIcon(newimg);  // transform it back
+                p.add(new JLabel(imageIcon));
             }
-
-            add(new JLabel(i+1+"." + name+"\n"));
+            else{ //tu nowe pobierać
+                ImageIcon imageIcon = new ImageIcon("src/main/resources/iss_logo_no_astronaut.jpg");
+                Image image = imageIcon.getImage(); // transform it
+                Image newimg = image.getScaledInstance(200, 190,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+                imageIcon = new ImageIcon(newimg);  // transform it back
+                p.add(new JLabel(imageIcon));
+            }
         }
+
+        add(p);
 
         //Menu
         JMenuBar menuBar = new JMenuBar();
