@@ -68,8 +68,17 @@ public class Astronauts_Frame extends JFrame {
         });
         pass_timeMenu.add(pass_timeItem);
         menuBar.add(pass_timeMenu);
+        JMenu aboutMenu = new JMenu("About");
+        JMenuItem aboutItem = new JMenuItem("Go to...");
+        aboutItem.addActionListener((event)-> {
+            new AboutFrame();
+            setVisible(true);
+            this.setVisible(false);
+        });
+        aboutMenu.add(aboutItem);
+        menuBar.add(aboutMenu);
         setJMenuBar(menuBar);
-        setSize(1414,660);
+        setSize(1200,600);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

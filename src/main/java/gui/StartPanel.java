@@ -9,7 +9,7 @@ import java.io.InputStream;
 
 public class StartPanel extends JPanel {
     private BufferedImage image;
-    public String fileName = "ISS TRACKER.png";
+    public String fileName = "ISS TRACKER START PAGE.png";
 
     public StartPanel(Frame frame){
         super();
@@ -36,7 +36,7 @@ public class StartPanel extends JPanel {
             frame.setVisible(false);
         });
         add(b,BorderLayout.SOUTH);
-        Dimension dimension = new Dimension(image.getWidth(), image.getHeight());
+        Dimension dimension = new Dimension(image.getWidth() , image.getHeight());
         setPreferredSize(dimension);
         setLocation(0,0);
     }

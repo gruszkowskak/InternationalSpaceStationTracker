@@ -40,6 +40,7 @@ public class WorldMapPanel extends JPanel {
             e.printStackTrace();
         }
 
+
         Dimension dimension = new Dimension(image.getWidth(), image.getHeight());
         setPreferredSize(dimension);
         setLocation(0,0);
@@ -56,7 +57,7 @@ public class WorldMapPanel extends JPanel {
 
 
     }
-    public void drawPointR (){
+    public void drawPointR (Color color){
         Graphics gr = getGraphics();
         Graphics g = getComponentGraphics(gr);
         Graphics2D g2d = (Graphics2D) g;
@@ -65,8 +66,8 @@ public class WorldMapPanel extends JPanel {
             LatitudeLongitudeToPixel toPixel = new LatitudeLongitudeToPixel(issPosition);
             double height = toPixel.convertlatitude(image.getHeight(),image.getWidth());
             double width = toPixel.convertlongitude(image.getWidth());
-            Ellipse2D circle = new Ellipse2D.Double(width,height , 4, 4);
-            g2d.setPaint(Color.RED);
+            Ellipse2D circle = new Ellipse2D.Double(width,height , 8, 8);
+            g2d.setPaint(color);
             g2d.fill(circle);
 
         } catch (IOException e) {
@@ -98,23 +99,6 @@ public class WorldMapPanel extends JPanel {
             e.printStackTrace();
         }
 
-    }
-    public void drawPointB (Graphics g){
-        Graphics2D g2d = (Graphics2D) g;
-        try {
-            this.issPosition = issPositionURL.RequestISSPosition();
-            LatitudeLongitudeToPixel toPixel = new LatitudeLongitudeToPixel(issPosition);
-            double height = toPixel.convertlatitude(image.getHeight(),image.getWidth());
-            double width = toPixel.convertlongitude(image.getWidth());
-            Ellipse2D circle = new Ellipse2D.Double(width,height , 6, 6);
-            g2d.setPaint(Color.RED);
-            g2d.fill(circle);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public void setFileName(String fileName) {

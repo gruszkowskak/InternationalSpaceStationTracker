@@ -1,7 +1,5 @@
+import gui.*;
 import gui.MainFrame;
-import gui.MainFrame2;
-import gui.MainFrame;
-import gui.StartFrame;
 
 import java.awt.EventQueue;
 import java.io.IOException;
