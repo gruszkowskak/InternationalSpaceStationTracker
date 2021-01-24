@@ -9,11 +9,10 @@ import java.io.InputStream;
 public class AboutPanel extends JPanel {
     public AboutPanel() {
         super();
-        //setLayout(new GridLayout(2,0));
         setLayout(new BorderLayout());
+        setBackground(new java.awt.Color(204, 230, 255));
         ImageIcon imageIcon = new ImageIcon("src/main/resources/logo MINI.png");
         JLabel jLabel = new JLabel(imageIcon);
-        //jLabel.setVerticalAlignment(JLabel.TOP);
         add(jLabel,BorderLayout.NORTH);
         JLabel label = new JLabel("<html><center>Authors: <br/><br/>" +
                 "    Klaudia Gruszkowska<br/>" +
@@ -27,7 +26,6 @@ public class AboutPanel extends JPanel {
                 "   - displays the date of the next ISS flight over the selected location.<br/><br/><br/>"+
                 "We get data via a publicly available API from http://open-notify.org/Open-Notify-API/.<br/><br/><br/><br/>" +
                 " </center></html>");
-        //label.setVerticalAlignment(JLabel.CENTER);
         label.setHorizontalAlignment(JLabel.CENTER);
         add(label);
 

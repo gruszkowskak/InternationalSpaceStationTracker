@@ -35,7 +35,6 @@ public class StartPanel extends JPanel {
         frame.setIconImage(icon);
         add(b,BorderLayout.SOUTH);
         Dimension dimension = new Dimension(image.getWidth() , image.getHeight());
-        System.out.println(dimension);
         setPreferredSize(dimension);
         setLocation(0,0);
     }
