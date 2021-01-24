@@ -18,7 +18,7 @@ public class ISSPosition implements Serializable {
             return latitude;
         }
 
-        // for check loading json to class
+
         @Override
         public String toString() {
             return "LongitudeLatitude{" +
@@ -51,7 +51,7 @@ public class ISSPosition implements Serializable {
         return iss_position.getLatitude();
     }
 
-    // for check loading json to class
+
     @Override
     public String toString() {
         return "ISSposition{" +

@@ -31,7 +31,7 @@ public class ISSPositionURL {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         String json = response.body();
 
-        // parse json to class ISSposition instance
+        // parse json to class ISSPosition instance
         Gson gson = new Gson();
         ISSPosition issposition= gson.fromJson(json,ISSPosition.class);
 

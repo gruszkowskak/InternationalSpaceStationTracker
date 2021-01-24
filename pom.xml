@@ -76,7 +76,7 @@
                         <configuration>
                             <headerType>gui</headerType>
                             <jar>${project.build.directory}/${project.artifactId}-${project.version}-shaded.jar</jar>
-                            <outfile>${project.build.directory}/apka.exe</outfile>
+                            <outfile>${project.build.directory}/ISS_tracker.exe</outfile>
                             <downloadUrl>http://java.com/download</downloadUrl>
                             <classPath>
 
@@ -92,13 +92,13 @@
                                 <fileVersion>1.0.0.1</fileVersion>
                                 <txtFileVersion>${project.version}</txtFileVersion>
                                 <fileDescription>${project.name}</fileDescription>
-                                <copyright>2014 yaqzi.pl</copyright>
+                                <copyright>2021 </copyright>
                                 <productVersion>1.0.0.2</productVersion>
                                 <txtProductVersion>1.0.0.3</txtProductVersion>
                                 <productName>${project.name}</productName>
-                                <companyName>yaqzi company</companyName>
-                                <internalName>yaqzi-app</internalName>
-                                <originalFilename>apka.exe</originalFilename>
+                                <companyName>${project.groupId}</companyName>
+                                <internalName>${project.groupId}</internalName>
+                                <originalFilename>ISS_tracker.exe</originalFilename>
                             </versionInfo>
                         </configuration>
                     </execution>

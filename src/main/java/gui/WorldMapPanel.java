@@ -6,10 +6,8 @@ import url.ISSPositionURL;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.concurrent.atomic.AtomicReference;
 
 
 import javax.imageio.ImageIO;
@@ -55,7 +53,7 @@ public class WorldMapPanel extends JPanel {
         try {
             this.issPosition = issPositionURL.RequestISSPosition();
             LatitudeLongitudeToPixel toPixel = new LatitudeLongitudeToPixel(issPosition);
-            double height = toPixel.convertlatitude(image.getHeight(),image.getWidth());
+            double height = toPixel.convertlatitude(image.getHeight());
             double width = toPixel.convertlongitude(image.getWidth());
             Ellipse2D circle = new Ellipse2D.Double(width,height , 8, 8);
             g2d.setPaint(color);

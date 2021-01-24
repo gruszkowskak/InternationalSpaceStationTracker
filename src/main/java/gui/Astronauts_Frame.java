@@ -22,7 +22,7 @@ public class Astronauts_Frame extends JFrame {
         //frame settings
         super("Astronauts");
         setLayout(new FlowLayout());
-        Image icon = new javax.swing.ImageIcon("src/main/resources/nasa_logo.png").getImage();
+        Image icon = new javax.swing.ImageIcon(getClass().getResource("/nasa_logo.png")).getImage();
         setIconImage(icon);
         getContentPane().setBackground(new java.awt.Color(204, 230, 255));
         JPanel p = new JPanel();
@@ -57,15 +57,18 @@ public class Astronauts_Frame extends JFrame {
             p.add(label);
             //if photo was already downloaded, use it
             File tmpDir = new File("src/main/resources/" + name + ".jpg");
+//            File tmpDir = new File(String.valueOf(getClass().getResource("/" + name + ".jpg")));
             boolean exists = tmpDir.exists();
             if (exists) {
                 ImageIcon imageIcon = new ImageIcon("src/main/resources/" + name + ".jpg");
+//                ImageIcon imageIcon = new ImageIcon(getClass().getResource("/" + name + ".jpg"));
                 //scale image
                 Image image = imageIcon.getImage();
                 Image newimg = image.getScaledInstance(200, 190, Image.SCALE_SMOOTH); // scale image
                 imageIcon = new ImageIcon(newimg);
                 p.add(new JLabel(imageIcon));
             } else { //if there is no proper image, here new image is downloaded
+                System.out.println("pobieranie zdjecia");
                 String imageUrl = AstronautImagesURL.search(name).getContentUrl();
                 String destinationFile = "src/main/resources/" + name + ".jpg";
 

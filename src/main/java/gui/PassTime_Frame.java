@@ -6,12 +6,10 @@ import url.ISSPassTimesURL;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -22,13 +20,13 @@ public class PassTime_Frame extends JFrame {
 
         //frame settings
         super("Next pass time");
-        Image icon = new javax.swing.ImageIcon("src/main/resources/nasa_logo.png").getImage();
+        Image icon = new javax.swing.ImageIcon(getClass().getResource("/nasa_logo.png")).getImage();
         setIconImage(icon);
 
         //read from file list of cities in Poland and save it
         BufferedReader in = null;
         try {
-            in = new BufferedReader(new FileReader("src/main/resources/City_poland.txt"));
+            in = new BufferedReader(new FileReader("src/main/resources/City_poland.txt", StandardCharsets.UTF_8));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -69,7 +67,7 @@ public class PassTime_Frame extends JFrame {
         wrapper.setBackground(new java.awt.Color(204, 230, 255));
         add(wrapper);
         //add and scale image of ISS seen from Earth
-        ImageIcon imageIcon = new ImageIcon("src/main/resources/iss_from_earth.jpg");
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/iss_from_earth.jpg"));
         Image image = imageIcon.getImage();
         Image newimg = image.getScaledInstance(550, 500,  java.awt.Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(newimg);
@@ -78,7 +76,6 @@ public class PassTime_Frame extends JFrame {
         //for selected city (after pressing button) display next pass time
         b.addActionListener((event)-> {
             String selectedCity = (String) comboCities.getSelectedItem();
-            System.out.println(selectedCity);
             assert selectedCity != null;
             float latitude = Float.parseFloat(selectedCity.substring(26,27))+Float.parseFloat(selectedCity.substring(29,30))/60;
             float longitude = Float.parseFloat(selectedCity.substring(35,36))+Float.parseFloat(selectedCity.substring(38,39))/60;
@@ -99,7 +96,6 @@ public class PassTime_Frame extends JFrame {
                 SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
                 sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT+1"));
                 String formattedDate = sdf.format(date);
-                System.out.println(formattedDate);
                 passTimeTextField.setText("Next pass at : "+ formattedDate);
             }
         });

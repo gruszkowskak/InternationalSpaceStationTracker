@@ -1,10 +1,7 @@
 package gui;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.io.InputStream;
 
 public class AboutPanel extends JPanel {
     public AboutPanel() {
@@ -24,7 +21,8 @@ public class AboutPanel extends JPanel {
                 "   - shows the current position of the International Space Station on the world map<br/>" +
                 "   - displays astronauts currently in space, along with their photos<br/>"+
                 "   - displays the date of the next ISS flight over the selected location.<br/><br/><br/>"+
-                "We get data via a publicly available API from http://open-notify.org/Open-Notify-API/.<br/><br/><br/><br/>" +
+                "We get data via a publicly available API from http://open-notify.org/Open-Notify-API/ <br/>" +
+                " end bing search API from: https://rapidapi.com/. <br/><br/><br/><br/>" +
                 " </center></html>");
         label.setHorizontalAlignment(JLabel.CENTER);
         add(label);

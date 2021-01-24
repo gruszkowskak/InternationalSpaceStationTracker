@@ -22,35 +22,13 @@ public class ISSPassTimesURL {
                 .GET()
                 .uri(URI.create(urlQuery))
                 .build();
+        // get json from web
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         String json = response.body();
-
+        // parse json to class ISSPassTimes instance
         Gson gson = new Gson();
         ISSPassTimes issPassTimes = gson.fromJson(json,ISSPassTimes.class);
         return  issPassTimes;
-
-
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        float lat = 52;
-        float lon = 21;
-        String urlQuery=URL + "?" + "lat=" + lat +"&" + "lon=" + lon;
-
-        System.out.println(urlQuery);
-        HttpClient client;
-        HttpRequest request;
-        client = HttpClient.newHttpClient();
-        request = HttpRequest.newBuilder()
-                .GET()
-                .uri(URI.create(urlQuery))
-                .build();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        String json = response.body();
-        System.out.println(json);
-
-        Gson gson = new Gson();
-        ISSPassTimes issPassTimes = gson.fromJson(json,ISSPassTimes.class);
-        System.out.println(issPassTimes);
-    }
 }

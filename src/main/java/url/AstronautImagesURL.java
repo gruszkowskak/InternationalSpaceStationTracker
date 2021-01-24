@@ -27,7 +27,7 @@ public class AstronautImagesURL {
                 .header("x-rapidapi-host", "bing-image-search1.p.rapidapi.com")
                 .method("GET", HttpRequest.BodyPublishers.noBody())
                 .build();
-
+        // get json from web
         String jsonInput=null;
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -38,23 +38,11 @@ public class AstronautImagesURL {
             e.printStackTrace();
         }
 
-
+        // parse json to class PeopleInSpaceNow instance
         Gson gson = new Gson();
         AstronautImages astronautImages = gson.fromJson(jsonInput,AstronautImages.class);
         return astronautImages;
     }
 
-    public static void main(String[] args) {
-        AstronautImages astronautImages= AstronautImagesURL.search("Sergey Ryzhikov");
-        String jpg = astronautImages.getContentUrl();
-        System.out.println(jpg);
-
-        System.out.println(AstronautImagesURL.search("Kate Rubins").getContentUrl());
-        System.out.println(AstronautImagesURL.search("Sergey Kud-Sverchkov").getContentUrl());
-        System.out.println(AstronautImagesURL.search("Mike Hopkins").getContentUrl());
-        System.out.println(AstronautImagesURL.search("Victor Glover").getContentUrl());
-        System.out.println(AstronautImagesURL.search("Shannon Walker").getContentUrl());
-        System.out.println(AstronautImagesURL.search("Soichi Noguchi").getContentUrl());
-    }
 }
 
