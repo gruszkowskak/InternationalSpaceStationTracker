@@ -26,10 +26,6 @@ public class StartPanel extends JPanel {
             try {
                 new MainFrame("Map.jpg");
                 setVisible(true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -37,18 +33,15 @@ public class StartPanel extends JPanel {
         });
         add(b,BorderLayout.SOUTH);
         Dimension dimension = new Dimension(image.getWidth() , image.getHeight());
+        System.out.println(dimension);
         setPreferredSize(dimension);
         setLocation(0,0);
     }
-    @Override
 
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(image, 0, 0, this);
-
-
-
-
     }
 }

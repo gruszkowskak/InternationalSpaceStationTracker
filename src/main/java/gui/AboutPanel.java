@@ -1,22 +1,35 @@
 package gui;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class AboutPanel extends JPanel {
-    public AboutPanel(){
+    public AboutPanel() {
         super();
+        //setLayout(new GridLayout(2,0));
         setLayout(new BorderLayout());
-        add(new JLabel("<html>Authors: <br/><br/>" +
+        ImageIcon imageIcon = new ImageIcon("src/main/resources/logo MINI.png");
+        JLabel jLabel = new JLabel(imageIcon);
+        //jLabel.setVerticalAlignment(JLabel.TOP);
+        add(jLabel,BorderLayout.NORTH);
+        JLabel label = new JLabel("<html><center>Authors: <br/><br/>" +
                 "    Klaudia Gruszkowska<br/>" +
                 "    Bartosz Jamroży<br/>" +
                 "    Agata Kaczmarek<br/><br/><br/>" +
-                "Ten projekt został stworzony w ramach projektu na studiach z przedmiotu Zaawansowane Programowanie Obiektowe i Funkcyjne." +
-                " Aplikacja przedstawia aktualne położenie Międzynarodowej Stacji Kosmicznej na mapie świata. " +
-                "Dane dotyczące położenia pobierany za pomocą publicznie dostępnego API ze strony http://open-notify.org/Open-Notify-API/ISS-Location-Now/." +
-                "Dodatkowo aplikacja posiada zakładkę Astronauts, któa wyświetla astronautów aktualnie przebywających w kosmosie, wraz z ich zdjęciami, które również są pobierane za pomocą API." +
-                "Ostatnią zakładką jest Pass Time , która wyświetla datę następnego przelotu ISS nad wybraną lokalizacją.</html>"),BorderLayout.NORTH);
 
+                "This project was created as part of course Advanced Object and Functional Programming.<br/><br/>" +
+                "The application : <br/><br/>" +
+                "   - shows the current position of the International Space Station on the world map<br/>" +
+                "   - displays astronauts currently in space, along with their photos<br/>"+
+                "   - displays the date of the next ISS flight over the selected location.<br/><br/><br/>"+
+                "We get data via a publicly available API from http://open-notify.org/Open-Notify-API/.<br/><br/><br/><br/>" +
+                " </center></html>");
+        //label.setVerticalAlignment(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.CENTER);
+        add(label);
 
     }
 }

@@ -21,8 +21,6 @@ public class AboutFrame extends JFrame {
             try {
                 new MainFrame("Map.jpg");
                 setVisible(true);
-            } catch (IOException e) {
-                e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -30,15 +28,15 @@ public class AboutFrame extends JFrame {
         });
         isstrackerMenu.add(isstrackerItem);
         menuBar.add(isstrackerMenu);
-        JMenu astrounautsMenu = new JMenu("Astrounauts");
-        JMenuItem astrounatsItem = new JMenuItem("Go to...");
-        astrounatsItem.addActionListener((event)-> {
+        JMenu astronautsMenu = new JMenu("Astronauts");
+        JMenuItem astronautsItem = new JMenuItem("Go to...");
+        astronautsItem.addActionListener((event)-> {
             new Astronauts_Frame();
             setVisible(true);
             this.setVisible(false);
         });
-        astrounautsMenu.add(astrounatsItem);
-        menuBar.add(astrounautsMenu);
+        astronautsMenu.add(astronautsItem);
+        menuBar.add(astronautsMenu);
         JMenu pass_timeMenu = new JMenu("Pass Time");
         JMenuItem pass_timeItem = new JMenuItem("Go to...");
         pass_timeItem.addActionListener((event)-> {
@@ -51,7 +49,7 @@ public class AboutFrame extends JFrame {
         setJMenuBar(menuBar);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1200,600);
+        setSize(1214,689);
         setVisible(true);
     }
 }

@@ -11,18 +11,17 @@ public class MainFrame extends JFrame {
 
     private Color color = Color.RED;
 
-    public MainFrame(String filename) throws Exception {
+    public MainFrame(String filename) {
         super("ISS tracker");
-        //setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
         setLayout(new BorderLayout());
-
-
 
         JPanel worldMapPanel = new WorldMapPanel(filename);
         add(worldMapPanel);
         JTextField latitudeTextField = new JTextField("Latitude : "+"Longitude : ");
         latitudeTextField.setPreferredSize(new Dimension(100,24));
         add(latitudeTextField,BorderLayout.SOUTH);
+
+        //Menu
         JMenuBar menuBar = new JMenuBar();
         JMenu mapMenu = new JMenu("Maps");
         JMenuItem menuItem = new JMenuItem("Night Map");
@@ -34,7 +33,7 @@ public class MainFrame extends JFrame {
             }
             setVisible(true);
             this.setVisible(false);
-        }); // change file in WorldMapPanel
+        });
         mapMenu.add(menuItem);
         JMenuItem menuItem2 = new JMenuItem("Map 1");
         menuItem2.addActionListener((event) ->  {
@@ -45,7 +44,7 @@ public class MainFrame extends JFrame {
             }
             setVisible(true);
             this.setVisible(false);
-        });// change file in WorldMapPanel
+        });
         mapMenu.add(menuItem2);
         JMenuItem menuItem3 = new JMenuItem("Map 2");
         menuItem3.addActionListener((event) ->  {
@@ -56,7 +55,7 @@ public class MainFrame extends JFrame {
             }
             setVisible(true);
             this.setVisible(false);
-        });// change file in WorldMapPanel
+        });
         mapMenu.add(menuItem3);
         menuBar.add(mapMenu);
         JMenu colorMenu = new JMenu("Point Color");
@@ -76,15 +75,15 @@ public class MainFrame extends JFrame {
         });
         colorMenu.add(greenColor);
         menuBar.add(colorMenu);
-        JMenu astrounautsMenu = new JMenu("Astrounauts");
-        JMenuItem astrounatsItem = new JMenuItem("Go to...");
-        astrounatsItem.addActionListener((event)-> {
+        JMenu astronautsMenu = new JMenu("Astronauts");
+        JMenuItem astronautsItem = new JMenuItem("Go to...");
+        astronautsItem.addActionListener((event)-> {
             new Astronauts_Frame();
             setVisible(true);
             this.setVisible(false);
         });
-        astrounautsMenu.add(astrounatsItem);
-        menuBar.add(astrounautsMenu);
+        astronautsMenu.add(astronautsItem);
+        menuBar.add(astronautsMenu);
         JMenu pass_timeMenu = new JMenu("Pass Time");
         JMenuItem pass_timeItem = new JMenuItem("Go to...");
         pass_timeItem.addActionListener((event)-> {
@@ -107,7 +106,7 @@ public class MainFrame extends JFrame {
         JMenuItem restart_item = new JMenuItem("Restart");
         restart_item.addActionListener((event)-> {
             try {
-                new MainFrame("Map.jpg");
+                new StartFrame();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -118,24 +117,20 @@ public class MainFrame extends JFrame {
         menuBar.add(restart);
         setJMenuBar(menuBar);
 
+        //draws points every 5 seconds
         Timer timer = new Timer(5000, new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                ((WorldMapPanel) worldMapPanel).drawPointR(color);
-//                ((WorldMapPanel) worldMapPanel).drawlogo();
+                ((WorldMapPanel) worldMapPanel).drawPoint(color);
                 ISSPosition issPosition = ((WorldMapPanel) worldMapPanel).getIssPosition();
                 latitudeTextField.setText("Latitude : "+ issPosition.getLatitude()+",  Longitude : " +issPosition.getLongitude());
 
             }
         });
-
         timer.start();
-
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
-
     }
 }
 
