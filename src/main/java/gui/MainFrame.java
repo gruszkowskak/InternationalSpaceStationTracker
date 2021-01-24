@@ -115,24 +115,49 @@ public class MainFrame extends JFrame {
     /*private JMapFrame frame;
     private GridCoverage2DReader reader;*/
 
-    public MainFrame() throws Exception {
+    public MainFrame(String filename) throws Exception {
         super("ISS tracker");
         setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
+        getContentPane().setBackground(new java.awt.Color(204, 230, 255));
+        Image icon = new javax.swing.ImageIcon("src/main/resources/nasa_logo.png").getImage();
+        setIconImage(icon);
 
-
-
-        JPanel worldMapPanel = new WorldMapPanel("Map.jpg");
+        JPanel worldMapPanel = new WorldMapPanel(filename);
         add(worldMapPanel);
         JMenuBar menuBar = new JMenuBar();
         JMenu mapMenu = new JMenu("Maps");
         JMenuItem menuItem = new JMenuItem("Night");
-        menuItem.addActionListener((event) -> System.out.println("Night")); // change file in WorldMapPanel
+        menuItem.addActionListener((event) -> {
+            try {
+                new MainFrame("NightMap.jpg");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            setVisible(true);
+            this.setVisible(false);
+        }); // change file in WorldMapPanel
         mapMenu.add(menuItem);
         JMenuItem menuItem2 = new JMenuItem("WholeMap");
-        menuItem2.addActionListener((event) ->  System.out.println("WholeMap")); // change file in WorldMapPanel
+        menuItem2.addActionListener((event) ->  {
+            try {
+                new MainFrame("WholeMap.jpg");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            setVisible(true);
+            this.setVisible(false);
+        });// change file in WorldMapPanel
         mapMenu.add(menuItem2);
         JMenuItem menuItem3 = new JMenuItem("Map");
-        menuItem3.addActionListener((event) ->  System.out.println("Map"));// change file in WorldMapPanel
+        menuItem3.addActionListener((event) ->  {
+            try {
+                new MainFrame("Map.jpg");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            setVisible(true);
+            this.setVisible(false);
+        });// change file in WorldMapPanel
         mapMenu.add(menuItem3);
         menuBar.add(mapMenu);
         JMenu astrounautsMenu = new JMenu("Astrounauts");
@@ -154,11 +179,17 @@ public class MainFrame extends JFrame {
         pass_timeMenu.add(pass_timeItem);
         menuBar.add(pass_timeMenu);
         JMenu restart = new JMenu("Restart");
-        restart.addActionListener((event)-> {
-            repaint();
-            JPanel worldMapPanel2 = new WorldMapPanel("Map.jpg");
-            add(worldMapPanel2);
+        JMenuItem restart_item = new JMenuItem("Restart");
+        restart_item.addActionListener((event)-> {
+            try {
+                new MainFrame("Map.jpg");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            setVisible(true);
+            this.setVisible(false);
         });
+        restart.add(restart_item);
         menuBar.add(restart);
         setJMenuBar(menuBar);
         JTextField latitudeTextField = new JTextField("Latitude : ");
@@ -189,7 +220,6 @@ public class MainFrame extends JFrame {
 
         timer.start();
         pack();
-        System.out.println(getSize().toString());
         setVisible(true);
 
     }
