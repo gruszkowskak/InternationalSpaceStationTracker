@@ -119,17 +119,39 @@ public class PassTime_Frame extends JFrame {
         });
         isstrackerMenu.add(isstrackerItem);
         menuBar.add(isstrackerMenu);
-        JMenu astrounautsMenu = new JMenu("Astrounauts");
-        JMenuItem astrounatsItem = new JMenuItem("Go to...");
-        astrounatsItem.addActionListener((event)-> {
+        JMenu astronautsMenu = new JMenu("Astronauts");
+        JMenuItem astronautsItem = new JMenuItem("Go to...");
+        astronautsItem.addActionListener((event)-> {
             new Astronauts_Frame();
             setVisible(true);
             this.setVisible(false);
         });
-        astrounautsMenu.add(astrounatsItem);
-        menuBar.add(astrounautsMenu);
+        astronautsMenu.add(astronautsItem);
+        menuBar.add(astronautsMenu);
+        JMenu aboutMenu = new JMenu("About");
+        JMenuItem aboutItem = new JMenuItem("Go to...");
+        aboutItem.addActionListener((event)-> {
+            new AboutFrame();
+            setVisible(true);
+            this.setVisible(false);
+        });
+        aboutMenu.add(aboutItem);
+        menuBar.add(aboutMenu);
+        JMenu restart = new JMenu("Restart");
+        JMenuItem restart_item = new JMenuItem("Restart");
+        restart_item.addActionListener((event)-> {
+            try {
+                new StartFrame();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            setVisible(true);
+            this.setVisible(false);
+        });
+        restart.add(restart_item);
+        menuBar.add(restart);
         setJMenuBar(menuBar);
-        setSize(1414,660);
+        setSize(1214,689);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

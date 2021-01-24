@@ -13,7 +13,7 @@ public class StartFrame extends JFrame {
         add(startPanel);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pack();
+        setSize(1214,684);
         setVisible(true);
     }
 

@@ -9,7 +9,7 @@ import java.io.InputStream;
 
 public class StartPanel extends JPanel {
     private BufferedImage image;
-    public String fileName = "ISS TRACKER.png";
+    public String fileName = "ISS TRACKER START PAGE.png";
 
     public StartPanel(Frame frame){
         super();
@@ -26,10 +26,6 @@ public class StartPanel extends JPanel {
             try {
                 new MainFrame("Map.jpg");
                 setVisible(true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -38,19 +34,15 @@ public class StartPanel extends JPanel {
         Image icon = new javax.swing.ImageIcon("src/main/resources/nasa_logo.png").getImage();
         frame.setIconImage(icon);
         add(b,BorderLayout.SOUTH);
-        Dimension dimension = new Dimension(image.getWidth(), image.getHeight());
+        Dimension dimension = new Dimension(image.getWidth() , image.getHeight());
         setPreferredSize(dimension);
         setLocation(0,0);
     }
-    @Override
 
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(image, 0, 0, this);
-
-
-
-
     }
 }

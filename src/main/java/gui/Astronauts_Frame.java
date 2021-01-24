@@ -108,8 +108,29 @@ public class Astronauts_Frame extends JFrame {
         });
         pass_timeMenu.add(pass_timeItem);
         menuBar.add(pass_timeMenu);
+        JMenu aboutMenu = new JMenu("About");
+        JMenuItem aboutItem = new JMenuItem("Go to...");
+        aboutItem.addActionListener((event)-> {
+            new AboutFrame();
+            setVisible(true);
+            this.setVisible(false);
+        });
+        aboutMenu.add(aboutItem);
+        menuBar.add(aboutMenu);JMenu restart = new JMenu("Restart");
+        JMenuItem restart_item = new JMenuItem("Restart");
+        restart_item.addActionListener((event)-> {
+            try {
+                new StartFrame();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            setVisible(true);
+            this.setVisible(false);
+        });
+        restart.add(restart_item);
+        menuBar.add(restart);
         setJMenuBar(menuBar);
-        setSize(1414,660);
+        setSize(1214,689);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
