@@ -14,7 +14,7 @@ public class AstronautImagesURL {
     public static AstronautImages search(String astronautName){
         String URL1="https://bing-image-search1.p.rapidapi.com/images/search?q=";
         String URL3="&count=1";
-        String message = astronautName + " astronaut wikipedia";
+        String message = astronautName + " astronauts";
         String URL2=message.replaceAll(" ","%20");
 
         HttpClient client = HttpClient.newBuilder()

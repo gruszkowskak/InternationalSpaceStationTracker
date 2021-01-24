@@ -31,6 +31,8 @@ public class StartPanel extends JPanel {
             }
             frame.setVisible(false);
         });
+        Image icon = new javax.swing.ImageIcon("src/main/resources/nasa_logo.png").getImage();
+        frame.setIconImage(icon);
         add(b,BorderLayout.SOUTH);
         Dimension dimension = new Dimension(image.getWidth() , image.getHeight());
         System.out.println(dimension);
