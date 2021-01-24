@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 public class ImageSave {
 
     public static void saveImage(String imageUrl, String destinationFile) throws IOException {
+        //saves image downloaded from imageUrl to destinationFile
         URL url = new URL(imageUrl);
         InputStream is = url.openStream();
         OutputStream os = new FileOutputStream(destinationFile);
@@ -27,32 +28,35 @@ public class ImageSave {
         os.close();
     }
     public static void main(String[] args) throws IOException {
+        //download the list of astronauts now on ISS
         PeopleInSpaceNowURL peopleInSpaceNowURL = new PeopleInSpaceNowURL();
         PeopleInSpaceNow peopleInSpaceNow = null;
         try {
             peopleInSpaceNow = peopleInSpaceNowURL.RequestPeopleInSpaceNow();
-        } catch (
-                IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-        ArrayList people = peopleInSpaceNow.getPeople();
+
+        ArrayList people = null;
+        if (peopleInSpaceNow != null) {
+            people = peopleInSpaceNow.getPeople();
+        }
         Pattern pattern = Pattern.compile("'(.*?)'");
-        for (int i = 0; i < people.size(); i++) {
-            String mydata = people.get(i).toString();
+        assert people != null;
+        for (Object person : people) {
+            String mydata = person.toString();
             //find name of astronaut
             Matcher matcher = pattern.matcher(mydata);
             String name = "a";
             if (matcher.find()) {
                 name = matcher.group(1);
             }
-
+            //get source url and define destination
             String imageUrl = AstronautImagesURL.search(name).getContentUrl();
-            String destinationFile = "src/main/resources/"+name+".jpg";
+            String destinationFile = "src/main/resources/" + name + ".jpg";
 
             saveImage(imageUrl, destinationFile);
 
-    }
+        }
 }
 }
