@@ -6,9 +6,7 @@ import url.ISSPassTimesURL;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -26,8 +24,8 @@ public class PassTime_Frame extends JFrame {
         //read from file list of cities in Poland and save it
         BufferedReader in = null;
         try {
-            in = new BufferedReader(new FileReader("src/main/resources/City_poland.txt", StandardCharsets.UTF_8));
-        } catch (IOException e) {
+            in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/City_poland.txt"),"UTF-8"));
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         String str=null;

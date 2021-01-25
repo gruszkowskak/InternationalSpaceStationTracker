@@ -9,7 +9,7 @@ public class AboutFrame extends JFrame {
         super("About");
         setLayout(new BorderLayout());
         getContentPane().setBackground(new java.awt.Color(204, 230, 255));
-        Image icon = new javax.swing.ImageIcon("src/main/resources/nasa_logo.png").getImage();
+        Image icon = new javax.swing.ImageIcon(getClass().getResource("/nasa_logo.png")).getImage();
         setIconImage(icon);
 
         JPanel aboutPanel = new AboutPanel();

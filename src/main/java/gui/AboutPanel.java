@@ -8,7 +8,8 @@ public class AboutPanel extends JPanel {
         super();
         setLayout(new BorderLayout());
         setBackground(new java.awt.Color(204, 230, 255));
-        ImageIcon imageIcon = new ImageIcon("src/main/resources/logo MINI.png");
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/logo MINI.png"));
+
         JLabel jLabel = new JLabel(imageIcon);
         add(jLabel,BorderLayout.NORTH);
         JLabel label = new JLabel("<html><center>Authors: <br/><br/>" +

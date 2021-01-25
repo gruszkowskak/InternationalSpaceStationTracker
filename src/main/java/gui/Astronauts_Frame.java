@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,12 +25,12 @@ public class Astronauts_Frame extends JFrame {
         //frame settings
         super("Astronauts");
         setLayout(new FlowLayout());
-        Image icon = new javax.swing.ImageIcon(getClass().getResource("/nasa_logo.png")).getImage();
+        Image icon = new ImageIcon(getClass().getResource("/nasa_logo.png")).getImage();
         setIconImage(icon);
-        getContentPane().setBackground(new java.awt.Color(204, 230, 255));
+        getContentPane().setBackground(new Color(204, 230, 255));
         JPanel p = new JPanel();
         p.setLayout(new GridLayout(3,3));
-        p.setBackground(new java.awt.Color(204, 230, 255));
+        p.setBackground(new Color(204, 230, 255));
 
         //downloading names of astronauts currently in space
         PeopleInSpaceNowURL peopleInSpaceNowURL= new PeopleInSpaceNowURL();
@@ -55,13 +58,12 @@ public class Astronauts_Frame extends JFrame {
             }
             JLabel label = new JLabel(name, SwingConstants.CENTER);
             p.add(label);
+//            name = "astonaut_picture/" + name;
             //if photo was already downloaded, use it
             File tmpDir = new File("src/main/resources/" + name + ".jpg");
-//            File tmpDir = new File(String.valueOf(getClass().getResource("/" + name + ".jpg")));
             boolean exists = tmpDir.exists();
             if (exists) {
                 ImageIcon imageIcon = new ImageIcon("src/main/resources/" + name + ".jpg");
-//                ImageIcon imageIcon = new ImageIcon(getClass().getResource("/" + name + ".jpg"));
                 //scale image
                 Image image = imageIcon.getImage();
                 Image newimg = image.getScaledInstance(200, 190, Image.SCALE_SMOOTH); // scale image
@@ -70,6 +72,13 @@ public class Astronauts_Frame extends JFrame {
             } else { //if there is no proper image, here new image is downloaded
                 System.out.println("pobieranie zdjecia");
                 String imageUrl = AstronautImagesURL.search(name).getContentUrl();
+                // create directory for photos of astronauts
+                try {
+                    Files.createDirectories(Paths.get("src/main/resources/"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
                 String destinationFile = "src/main/resources/" + name + ".jpg";
 
                 try {
