@@ -12,4 +12,4 @@ Został zrealizowany w technologii java, maven.
 * gitignore
 * prezentacja
 * kod programu (folder src)
-* pliki wykonywalne programu  (ISS_tracker.exe, ISS_tracker.jar)
+* pliki wykonywalne programu  (ISS_tracker.exe, ISS_tracker.jar (JDK 15))
