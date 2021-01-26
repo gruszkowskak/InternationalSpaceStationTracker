@@ -23,7 +23,7 @@ public class AboutPanel extends JPanel {
                 "   - displays astronauts currently in space, along with their photos<br/>"+
                 "   - displays the date of the next ISS flight over the selected location.<br/><br/><br/>"+
                 "We get data via a publicly available API from http://open-notify.org/Open-Notify-API/ <br/>" +
-                " end bing search API from: https://rapidapi.com/. <br/><br/><br/><br/>" +
+                " and bing search API from: https://rapidapi.com/. <br/><br/><br/><br/>" +
                 " </center></html>");
         label.setHorizontalAlignment(JLabel.CENTER);
         add(label);
